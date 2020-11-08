@@ -9,6 +9,7 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "progress":  "true",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
