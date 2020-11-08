@@ -19,6 +19,8 @@ namespace AdventureWorksWebDemo
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +31,16 @@ namespace AdventureWorksWebDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var cors = Configuration.GetValue<string>("cors").Split(',', StringSplitOptions.RemoveEmptyEntries);
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins(cors);
+                                  });
+            });
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -69,6 +81,8 @@ namespace AdventureWorksWebDemo
 
             app.UseRouting();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -96,7 +110,7 @@ namespace AdventureWorksWebDemo
                     spa.Options.StartupTimeout = new TimeSpan(0, 5, 0);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
-            }); 
+            });
         }
 
         private void RegisterRepositories(IServiceCollection services)

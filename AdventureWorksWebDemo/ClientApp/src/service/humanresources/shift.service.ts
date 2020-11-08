@@ -14,5 +14,5 @@ export class ShiftService extends RestBaseService<Shift> {
   }
 
   protected getApiPath(): string {
-    return "shift";
+    return "shifts";
   }}
