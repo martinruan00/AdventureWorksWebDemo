@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 
 namespace AdventureWorksWebDemo.Core
 {
-    public interface IRepository<TContract, TEntity>
-        where TContract : class
-        where TEntity : class, IEntity
+
+    public interface IRepository<TModel>
+        where TModel : class
     {
-        Task<List<TContract>> GetAllAsync();
-        Task<TContract> GetAsync(int id);
-        Task PostAsync(TContract entity);
-        Task PutAsync(TContract entity);
+        Task<List<TModel>> GetAllAsync();
+        Task<TModel> GetAsync(int id);
+        Task PostAsync(TModel entity);
+        Task PutAsync(TModel entity);
         Task DeleteAsync(int id);
     }
 }

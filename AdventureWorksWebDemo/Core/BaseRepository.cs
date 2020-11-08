@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace AdventureWorksWebDemo.Core
 {
-    public abstract class BaseRepository<TContract, TEntity> : IRepository<TContract, TEntity>
-        where TContract : class
+    public abstract class BaseRepository<TModel, TEntity> : IRepository<TModel>
+        where TModel : class
         where TEntity : class, IEntity
     {
         private readonly AdventureWorks2016Context context;
@@ -22,36 +22,36 @@ namespace AdventureWorksWebDemo.Core
 
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<TContract, TEntity>(MemberList.Source);
-                cfg.CreateMap<TEntity, TContract>(MemberList.Destination);
+                cfg.CreateMap<TModel, TEntity>(MemberList.Source);
+                cfg.CreateMap<TEntity, TModel>(MemberList.Destination);
             });
             this.ConfigAutoMapper(configuration);
             this.mapper = configuration.CreateMapper();
         }
 
-        public virtual async Task<List<TContract>> GetAllAsync()
+        public virtual async Task<List<TModel>> GetAllAsync()
         {
             var entities = await context.Set<TEntity>().ToListAsync();
-            return entities.Select(mapper.Map<TContract>).ToList();
+            return entities.Select(mapper.Map<TModel>).ToList();
         }
 
-        public async Task<TContract> GetAsync(int id)
+        public async Task<TModel> GetAsync(int id)
         {
             var entity = await context.Set<TEntity>().FindAsync(id);
-            return mapper.Map<TContract>(entity);
+            return mapper.Map<TModel>(entity);
         }
 
-        public virtual async Task PostAsync(TContract contract)
+        public virtual async Task PostAsync(TModel contract)
         {
             var mapped = this.mapper.Map<TEntity>(contract);
             context.Set<TEntity>().Add(mapped);
             await context.SaveChangesAsync();
         }
 
-        public virtual async Task PutAsync(TContract contract)
+        public virtual async Task PutAsync(TModel contract)
         {
             var dbSet = context.Set<TEntity>();
-            var toUpdate = dbSet.FirstOrDefault(e => GetEntityId(e) == GetContractId(contract));
+            var toUpdate = dbSet.FirstOrDefault(e => GetEntityId(e) == GetModelId(contract));
             if (toUpdate != null)
             {
                 this.mapper.Map(contract, toUpdate);
@@ -72,7 +72,7 @@ namespace AdventureWorksWebDemo.Core
 
         protected abstract int GetEntityId(TEntity e);
 
-        protected abstract int GetContractId(TContract c);
+        protected abstract int GetModelId(TModel c);
 
         protected virtual void ConfigAutoMapper(MapperConfiguration cfg)
         {

@@ -4,9 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AdventureWorks.Data;
-using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
 
@@ -16,9 +13,9 @@ namespace AdventureWorksWebDemo.Controllers.HumanResources
     [ApiController]
     public class ShiftsController : ControllerBase
     {
-        private readonly IRepository<ShiftModel, Shift> repository;
+        private readonly IRepository<ShiftModel> repository;
 
-        public ShiftsController(IRepository<ShiftModel, Shift> repository)
+        public ShiftsController(IRepository<ShiftModel> repository)
         {
             this.repository = repository;
         }

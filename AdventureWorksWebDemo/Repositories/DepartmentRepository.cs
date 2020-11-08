@@ -15,7 +15,7 @@ namespace AdventureWorksWebDemo.Repositories
         {
         }
 
-        protected override int GetContractId(DepartmentModel c)
+        protected override int GetModelId(DepartmentModel c)
         {
             return c.DepartmentId;
         }

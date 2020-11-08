@@ -16,9 +16,9 @@ namespace AdventureWorksWebDemo.Controllers.HumanResources
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-        private readonly IRepository<EmployeeModel, Employee> repository;
+        private readonly IRepository<EmployeeModel> repository;
 
-        public EmployeesController(IRepository<EmployeeModel, Employee> repository)
+        public EmployeesController(IRepository<EmployeeModel> repository)
         {
             this.repository = repository;
         }

@@ -5,13 +5,13 @@ using AdventureWorksWebDemo.Models;
 
 namespace AdventureWorksWebDemo.Repositories
 {
-    public class JobCandidateRepository : BaseRepository<JobCandidate, JobCandidate>
+    public class JobCandidateRepository : BaseRepository<JobCandidateModel, JobCandidate>
     {
         public JobCandidateRepository(AdventureWorks2016Context context) : base(context)
         {
         }
 
-        protected override int GetContractId(JobCandidate c)
+        protected override int GetModelId(JobCandidateModel c)
         {
             return c.JobCandidateId;
         }

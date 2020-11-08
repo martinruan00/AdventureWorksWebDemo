@@ -5,13 +5,13 @@ using AdventureWorksWebDemo.Models;
 
 namespace AdventureWorksWebDemo.Repositories
 {
-    public class ShiftRepository : BaseRepository<Shift, Shift>
+    public class ShiftRepository : BaseRepository<ShiftModel, Shift>
     {
         public ShiftRepository(AdventureWorks2016Context context) : base(context)
         {
         }
 
-        protected override int GetContractId(Shift c)
+        protected override int GetModelId(ShiftModel c)
         {
             return c.ShiftId;
         }
