@@ -1,15 +1,17 @@
 export interface Employee {
-  businessEntityId: number;
+  employeeId: number;
   nationalIdnumber: string;
-  loginId: string;
-  organizationLevel: number | null;
+  title: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  suffix: string;
   jobTitle: string;
   birthDate: string;
   maritalStatus: string;
   gender: string;
   hireDate: string;
-  salariedFlag: boolean | null;
   vacationHours: number;
   sickLeaveHours: number;
-  currentFlag: boolean | null;
+  additionalContactInfo: string;
 }

@@ -1,6 +1,7 @@
 ﻿using AdventureWorks.Data;
 using AdventureWorks.Data.Entities;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,26 +14,31 @@ namespace AdventureWorksWebDemo.Core
         where TModel : class
         where TEntity : class, IEntity
     {
-        private readonly AdventureWorks2016Context context;
-        private IMapper mapper;
+        protected readonly AdventureWorks2016Context context;
+        protected readonly IConfigurationProvider configuration;
+        private readonly IMapper mapper;
 
         public BaseRepository(AdventureWorks2016Context context)
         {
             this.context = context;
 
-            var configuration = new MapperConfiguration(cfg =>
+            this.configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<TModel, TEntity>(MemberList.Source);
-                cfg.CreateMap<TEntity, TModel>(MemberList.Destination);
+                var modelToEntity = cfg.CreateMap<TModel, TEntity>(MemberList.Source);
+                this.ConfigModelToEntityMapping(modelToEntity);
+
+                var entityToModel = cfg.CreateMap<TEntity, TModel>(MemberList.Destination);
+                this.ConfigEntityToModelMapping(entityToModel);
             });
-            this.ConfigAutoMapper(configuration);
+
             this.mapper = configuration.CreateMapper();
         }
 
-        public virtual async Task<List<TModel>> GetAllAsync()
+        public virtual Task<List<TModel>> GetAllAsync()
         {
-            var entities = await context.Set<TEntity>().ToListAsync();
-            return entities.Select(mapper.Map<TModel>).ToList();
+            return context.Set<TEntity>()
+                .ProjectTo<TModel>(this.configuration)
+                .ToListAsync();
         }
 
         public async Task<TModel> GetAsync(int id)
@@ -74,9 +80,12 @@ namespace AdventureWorksWebDemo.Core
 
         protected abstract int GetModelId(TModel c);
 
-        protected virtual void ConfigAutoMapper(MapperConfiguration cfg)
+        protected virtual void ConfigEntityToModelMapping(IMappingExpression<TEntity, TModel> entityToModel)
         {
+        }
 
+        protected virtual void ConfigModelToEntityMapping(IMappingExpression<TModel, TEntity> modelToEntity)
+        {
         }
     }
 }
