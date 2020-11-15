@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../../model/humanresources/employee';
 import { EmployeeService } from '../../../service/humanresources/employee.service';
-import { ColumnDefinition } from '../../../core/components/core/base-table-view/base-table-view.component';
+import { ColumnDefinition } from '../../../core/components/base-table-view/base-table-view.component';
 
 @Component({
   selector: 'app-employee',
@@ -9,6 +9,7 @@ import { ColumnDefinition } from '../../../core/components/core/base-table-view/
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
+  loading: boolean;
   employees: Employee[];
   columnDefinitions: ColumnDefinition[] = [
     { key: 'nationalIdnumber', header: 'Id number' },
@@ -29,8 +30,10 @@ export class EmployeeComponent implements OnInit {
   constructor(private service: EmployeeService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.service.get().subscribe(response => {
       this.employees = response;
+      this.loading = false;
     });
   }
 

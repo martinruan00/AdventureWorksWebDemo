@@ -2,6 +2,13 @@
     margin-top: 5%;
 }
 
+.app-logo {
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 a:hover {
   background-color: silver;
 }

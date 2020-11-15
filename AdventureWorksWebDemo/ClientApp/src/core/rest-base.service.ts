@@ -10,7 +10,11 @@ export abstract class RestBaseService<TModel> {
   private url: string;
 
   constructor(private http: HttpClient, private configService: ConfigService) {
-    this.url = `${this.configService.config.apiEndpoint}/${this.getApiPath()}`;
+    if (configService.configObservable.getValue() != null) {
+      this.url = `${this.configService.config.apiEndpoint}/${this.getApiPath()}`;
+    }
+
+    configService.configObservable.subscribe(c => this.url = `${this.configService.config.apiEndpoint}/${this.getApiPath()}`);
   }
 
   get(): Observable<Array<TModel>> {

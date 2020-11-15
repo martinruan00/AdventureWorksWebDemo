@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Department } from '../../../model/humanresources/department';
 import { DepartmentService } from '../../../service/humanresources/department.service';
-import { ColumnDefinition } from '../../../core/components/core/base-table-view/base-table-view.component';
+import { ColumnDefinition } from '../../../core/components/base-table-view/base-table-view.component';
 
 @Component({
   selector: 'app-department',
@@ -9,6 +9,7 @@ import { ColumnDefinition } from '../../../core/components/core/base-table-view/
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
+  loading: boolean;
   departments: Array<Department>;
   columnDefinitions: ColumnDefinition[] = [
     { key: 'name', header: 'Name'},
@@ -19,8 +20,10 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.service.get().subscribe(response => {
       this.departments = response;
+      this.loading = false;
     });
   }
 }

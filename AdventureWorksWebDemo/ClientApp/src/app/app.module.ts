@@ -3,6 +3,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,14 +27,15 @@ export function initConfig(configService: ConfigService) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatSidenavModule,
-    BrowserAnimationsModule,
     MatListModule,
     RouterModule,
     MatExpansionModule,
     HumanresourcesModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {
