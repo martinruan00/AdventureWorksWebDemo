@@ -1,0 +1,28 @@
+<div class="spinner-wrapper" [hidden]="!loading">
+  <mat-spinner class="table-view-spinner"></mat-spinner>
+</div>
+
+
+<div [hidden]="loading">
+  <button mat-raised-button color="primary">Create</button>
+
+  <table mat-table [dataSource]="items" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="colDef.key" *ngFor="let colDef of columnDefinitions">
+      <th class="table-cell" mat-header-cell *matHeaderCellDef> {{colDef.header}} </th>
+      <td class="table-cell" mat-cell *matCellDef="let item"> {{item[colDef.key]}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th class="table-cell" mat-header-cell *matHeaderCellDef>  </th>
+      <td class="table-cell" mat-cell *matCellDef="let item"> <button mat-raised-button>Edit</button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th class="table-cell" mat-header-cell *matHeaderCellDef>  </th>
+      <td class="table-cell" mat-cell *matCellDef="let item"> <button mat-raised-button color="warn">Delete</button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

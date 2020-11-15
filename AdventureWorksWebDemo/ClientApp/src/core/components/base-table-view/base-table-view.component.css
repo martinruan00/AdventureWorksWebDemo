@@ -1,0 +1,30 @@
+.grid {
+    height: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.table-row {
+    cursor:pointer;
+}
+
+.table-row:hover {
+  background-color: lightgray;
+}
+
+.table-cell {
+  padding: 5px;
+}
+
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.table-view-spinner {
+  margin: auto;
+  z-index: 100;
+}

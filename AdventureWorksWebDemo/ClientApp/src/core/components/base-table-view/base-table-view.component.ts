@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-base-table-view',
@@ -6,13 +7,20 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
   styleUrls: ['./base-table-view.component.css']
 })
 export class BaseTableViewComponent implements OnInit, OnChanges {
+  @Input() loading: boolean;
   @Input() items: Array<any>;
   @Input() columnDefinitions: Array<ColumnDefinition>;
+
   displayedColumns: Array<string>;
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.displayedColumns = (changes.columnDefinitions.currentValue as Array<ColumnDefinition>).map(c => c.key);
+    if (changes.columnDefinitions != undefined) {
+      this.displayedColumns;
+      this.displayedColumns = (changes.columnDefinitions.currentValue as Array<ColumnDefinition>)
+        .map(c => c.key)
+        .concat(['edit', 'delete']);
+    }
   }
 
   ngOnInit(): void {
@@ -23,4 +31,5 @@ export class BaseTableViewComponent implements OnInit, OnChanges {
 export interface ColumnDefinition {
   header: string;
   key: string;
+  template: Component;
 }
