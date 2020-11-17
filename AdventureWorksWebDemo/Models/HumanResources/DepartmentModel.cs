@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdventureWorksWebDemo.Models
+namespace AdventureWorksWebDemo.Models.HumanResources
 {
     public class DepartmentModel
     {

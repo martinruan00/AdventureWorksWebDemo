@@ -9,6 +9,7 @@ using AdventureWorks.Data;
 using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
+using AdventureWorksWebDemo.Models.HumanResources;
 
 namespace AdventureWorksWebDemo.Controllers.HumanResources
 {

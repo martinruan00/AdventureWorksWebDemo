@@ -2,6 +2,7 @@
 using AdventureWorksWebDemo.Core;
 using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Models;
+using AdventureWorksWebDemo.Models.HumanResources;
 
 namespace AdventureWorksWebDemo.Repositories
 {

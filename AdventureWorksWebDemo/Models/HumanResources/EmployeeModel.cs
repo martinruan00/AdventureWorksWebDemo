@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdventureWorksWebDemo.Models
+namespace AdventureWorksWebDemo.Models.HumanResources
 {
     public class EmployeeModel
     {

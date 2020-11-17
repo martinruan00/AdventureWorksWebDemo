@@ -13,12 +13,15 @@ export class ConfigService {
   constructor(private http: HttpClient) {
   }
 
-  loadConfig(): void {
-    this.http.get<AppConfig>('../assets/app-config.json')
-      .subscribe(c => {
+  loadConfig(): Promise<AppConfig> {
+    let getConfigPromise = this.http.get<AppConfig>('../assets/app-config.json').toPromise();
+    getConfigPromise
+      .then(c => {
         this.config = c;
         this.configObservable.next(this.config);
         console.log('app config loaded');
+
       });
+    return getConfigPromise;
   }
 }

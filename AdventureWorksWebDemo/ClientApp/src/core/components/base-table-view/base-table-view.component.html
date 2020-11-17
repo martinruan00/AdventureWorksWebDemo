@@ -4,7 +4,7 @@
 
 
 <div [hidden]="loading">
-  <button mat-raised-button color="primary">Create</button>
+  <button mat-raised-button color="primary" (click)="onCreate">Create</button>
 
   <table mat-table [dataSource]="items" class="mat-elevation-z8">
     <ng-container [matColumnDef]="colDef.key" *ngFor="let colDef of columnDefinitions">
@@ -14,15 +14,15 @@
 
     <ng-container matColumnDef="edit">
       <th class="table-cell" mat-header-cell *matHeaderCellDef>  </th>
-      <td class="table-cell" mat-cell *matCellDef="let item"> <button mat-raised-button>Edit</button> </td>
+      <td class="table-cell" mat-cell *matCellDef="let item"> <button mat-raised-button (click)="onRowEdit($event, item)">Edit</button> </td>
     </ng-container>
 
     <ng-container matColumnDef="delete">
       <th class="table-cell" mat-header-cell *matHeaderCellDef>  </th>
-      <td class="table-cell" mat-cell *matCellDef="let item"> <button mat-raised-button color="warn">Delete</button> </td>
+      <td class="table-cell" mat-cell *matCellDef="let item"> <button mat-raised-button color="warn" (click)="onRowDelete($event, item)">Delete</button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row)"></tr>
   </table>
 </div>

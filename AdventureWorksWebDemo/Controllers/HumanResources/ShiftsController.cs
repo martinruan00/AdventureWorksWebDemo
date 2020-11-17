@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
+using AdventureWorksWebDemo.Models.HumanResources;
 
 namespace AdventureWorksWebDemo.Controllers.HumanResources
 {

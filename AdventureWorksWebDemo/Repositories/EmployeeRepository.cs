@@ -2,6 +2,7 @@
 using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
+using AdventureWorksWebDemo.Models.HumanResources;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;

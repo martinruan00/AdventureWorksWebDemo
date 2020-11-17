@@ -14,6 +14,7 @@ using System.Linq;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
 using AdventureWorksWebDemo.Repositories;
+using AdventureWorksWebDemo.Models.HumanResources;
 
 namespace AdventureWorksWebDemo
 {

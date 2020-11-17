@@ -14,7 +14,7 @@ export abstract class RestBaseService<TModel> {
       this.url = `${this.configService.config.apiEndpoint}/${this.getApiPath()}`;
     }
 
-    configService.configObservable.subscribe(c => this.url = `${this.configService.config.apiEndpoint}/${this.getApiPath()}`);
+    configService.configObservable.subscribe(c => this.url = `${this.configService.config?.apiEndpoint}/${this.getApiPath()}`);
   }
 
   get(): Observable<Array<TModel>> {

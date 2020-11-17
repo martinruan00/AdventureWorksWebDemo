@@ -1,4 +1,4 @@
-﻿namespace AdventureWorksWebDemo.Models
+﻿namespace AdventureWorksWebDemo.Models.HumanResources
 {
     public class JobCandidateModel
     {

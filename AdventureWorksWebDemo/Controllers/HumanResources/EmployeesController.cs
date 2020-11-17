@@ -6,6 +6,7 @@ using AdventureWorks.Data;
 using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
+using AdventureWorksWebDemo.Models.HumanResources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
