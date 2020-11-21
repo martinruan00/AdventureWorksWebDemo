@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ConfigService } from './config.service';
+import { ColumnDefinition } from './components/base-table-view/base-table-view.component';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export abstract class RestBaseService<TModel> {
 
   delete(id: number, model: TModel): Observable<TModel> {
     return this.http.delete<TModel>(`${this.url}/${id}`);
+  }
+
+  getColumnMetadata(): Observable<Array<ColumnDefinition>> {
+    return this.http.get<Array<ColumnDefinition>>(`${this.url}/columnmetadata`);
   }
 
   protected abstract getApiPath(): string;

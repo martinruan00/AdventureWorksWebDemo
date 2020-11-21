@@ -12,11 +12,7 @@ export class ShiftComponent implements OnInit {
   loading: boolean;
   displayedColumns: String[] = ['name', 'startTime', 'endTime'];
   shifts: Shift[];
-  columnDefinitions: Array<ColumnDefinition> = [
-    { header: 'Name', key: 'name' },
-    { header: 'Start time', key: 'startTime' },
-    { header: 'End time', key: 'endTime' }
-  ];
+  columnDefinitions: Array<ColumnDefinition>;
 
   constructor(private service: ShiftService) {
 
@@ -24,6 +20,9 @@ export class ShiftComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+
+    this.service.getColumnMetadata().subscribe(res => this.columnDefinitions = res);
+
     this.service.get().subscribe(response => {
       this.shifts = response;
       this.loading = false;

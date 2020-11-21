@@ -22,8 +22,7 @@ export class BaseTableViewComponent implements OnInit, OnChanges {
   constructor(private dialog: MatDialog) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.columnDefinitions != undefined) {
-      this.displayedColumns;
+    if (changes.columnDefinitions?.currentValue != undefined) {
       this.displayedColumns = (changes.columnDefinitions.currentValue as Array<ColumnDefinition>)
         .map(c => c.key)
         .concat(['edit', 'delete']);

@@ -11,16 +11,17 @@ import { ColumnDefinition } from '../../../core/components/base-table-view/base-
 export class DepartmentComponent implements OnInit {
   loading: boolean;
   departments: Array<Department>;
-  columnDefinitions: ColumnDefinition[] = [
-    { key: 'name', header: 'Name'},
-    { key: 'groupName', header: 'Group name'}
-  ];
+  columnDefinitions: ColumnDefinition[];
 
-  constructor(private service: DepartmentService) {    
+  constructor(private service: DepartmentService) {
   }
 
   ngOnInit(): void {
     this.loading = true;
+    this.service.getColumnMetadata().subscribe(res => {
+      this.columnDefinitions = res;
+    });
+
     this.service.get().subscribe(response => {
       this.departments = response;
       this.loading = false;
