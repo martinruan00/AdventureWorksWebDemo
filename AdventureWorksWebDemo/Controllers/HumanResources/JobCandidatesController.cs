@@ -10,16 +10,17 @@ using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
 using AdventureWorksWebDemo.Models.HumanResources;
+using AdventureWorksWebDemo.Generators;
 
 namespace AdventureWorksWebDemo.Controllers.HumanResources
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobCandidatesController : ControllerBase
+    public class JobCandidatesController : AdventureWorksBaseController<JobCandidateModel>
     {
         private readonly IRepository<JobCandidateModel> repository;
 
-        public JobCandidatesController(IRepository<JobCandidateModel> repository)
+        public JobCandidatesController(IRepository<JobCandidateModel> repository, IMetadataGenerator metadataGenerator) : base(metadataGenerator)
         {
             this.repository = repository;
         }

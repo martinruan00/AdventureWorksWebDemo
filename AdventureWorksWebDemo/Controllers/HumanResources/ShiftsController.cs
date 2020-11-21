@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
 using AdventureWorksWebDemo.Models.HumanResources;
+using AdventureWorksWebDemo.Generators;
 
 namespace AdventureWorksWebDemo.Controllers.HumanResources
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ShiftsController : ControllerBase
+    public class ShiftsController : AdventureWorksBaseController<ShiftModel>
     {
         private readonly IRepository<ShiftModel> repository;
 
-        public ShiftsController(IRepository<ShiftModel> repository)
+        public ShiftsController(IRepository<ShiftModel> repository, IMetadataGenerator metadataGenerator) : base(metadataGenerator)
         {
             this.repository = repository;
         }

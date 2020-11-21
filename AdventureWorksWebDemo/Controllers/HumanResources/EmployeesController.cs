@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AdventureWorks.Data;
 using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
+using AdventureWorksWebDemo.Generators;
 using AdventureWorksWebDemo.Models;
 using AdventureWorksWebDemo.Models.HumanResources;
 using Microsoft.AspNetCore.Http;
@@ -15,11 +16,11 @@ namespace AdventureWorksWebDemo.Controllers.HumanResources
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class EmployeesController : AdventureWorksBaseController<EmployeeModel>
     {
         private readonly IRepository<EmployeeModel> repository;
 
-        public EmployeesController(IRepository<EmployeeModel> repository)
+        public EmployeesController(IRepository<EmployeeModel> repository, IMetadataGenerator metadataGenerator) : base(metadataGenerator)
         {
             this.repository = repository;
         }

@@ -7,16 +7,17 @@ using AdventureWorks.Data.Entities;
 using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
 using AdventureWorksWebDemo.Models.HumanResources;
+using AdventureWorksWebDemo.Generators;
 
 namespace AdventureWorksWebDemo.Controllers.HumanResources
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentsController : ControllerBase
+    public class DepartmentsController : AdventureWorksBaseController<DepartmentModel>
     {
         private readonly IRepository<DepartmentModel> repository;
 
-        public DepartmentsController(IRepository<DepartmentModel> repository)
+        public DepartmentsController(IRepository<DepartmentModel> repository, IMetadataGenerator metadataGenerator) : base(metadataGenerator)
         {
             this.repository = repository;
         }

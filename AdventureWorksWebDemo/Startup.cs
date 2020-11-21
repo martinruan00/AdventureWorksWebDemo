@@ -15,6 +15,7 @@ using AdventureWorksWebDemo.Core;
 using AdventureWorksWebDemo.Models;
 using AdventureWorksWebDemo.Repositories;
 using AdventureWorksWebDemo.Models.HumanResources;
+using AdventureWorksWebDemo.Generators;
 
 namespace AdventureWorksWebDemo
 {
@@ -49,8 +50,11 @@ namespace AdventureWorksWebDemo
 
             this.RegisterRepositories(services);
 
+            services.AddSingleton<IMetadataGenerator, MetadataGenerator>();
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
+
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
