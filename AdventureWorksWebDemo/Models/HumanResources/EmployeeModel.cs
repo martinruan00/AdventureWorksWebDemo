@@ -13,39 +13,39 @@ namespace AdventureWorksWebDemo.Models.HumanResources
         [ColumnMetadata("Title")]
         public string Title { get; set; }
 
-        [ColumnMetadata("FirstName")]
+        [ColumnMetadata("First name")]
         public string FirstName { get; set; }
 
-        [ColumnMetadata("MiddleName")]
+        [ColumnMetadata("Middle name")]
         public string MiddleName { get; set; }
 
-        [ColumnMetadata("LastName")]
+        [ColumnMetadata("Last name")]
         public string LastName { get; set; }
 
         public string Suffix { get; set; }
 
-        [ColumnMetadata("JobTitle")]
+        [ColumnMetadata("Job title")]
         public string JobTitle { get; set; }
 
-        [ColumnMetadata("BirthDate")]
+        [ColumnMetadata("Birth date")]
         public DateTime BirthDate { get; set; }
 
-        [ColumnMetadata("MaritalStatus")]
+        [ColumnMetadata("Maritals status")]
         public string MaritalStatus { get; set; }
 
         [ColumnMetadata("Gender")]
         public string Gender { get; set; }
 
-        [ColumnMetadata("HireDate")]
+        [ColumnMetadata("Hire date")]
         public DateTime HireDate { get; set; }
 
-        [ColumnMetadata("VacationHours")]
+        [ColumnMetadata("Vacation hours")]
         public short VacationHours { get; set; }
 
-        [ColumnMetadata("SickLeaveHours")]
+        [ColumnMetadata("Sick-leave hours")]
         public short SickLeaveHours { get; set; }
 
-        [ColumnMetadata("AdditionalContactInfo")]
+        [ColumnMetadata("Additional contact info")]
         public string AdditionalContactInfo { get; set; }
     }
 }

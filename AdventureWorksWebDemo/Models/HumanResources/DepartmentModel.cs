@@ -10,7 +10,7 @@ namespace AdventureWorksWebDemo.Models.HumanResources
         public short DepartmentId { get; set; }
         [ColumnMetadata("Name")]
         public string Name { get; set; }
-        [ColumnMetadata("GroupName")]
+        [ColumnMetadata("Group name")]
         public string GroupName { get; set; }
     }
 }

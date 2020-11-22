@@ -4,6 +4,7 @@
 
 
 <div [hidden]="loading">
+  <h1>{{tableHeader}}</h1>
   <button mat-raised-button color="primary" (click)="onCreate">Create</button>
 
   <table mat-table [dataSource]="items" class="mat-elevation-z8">

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
 import { MatDialog } from '@angular/material/dialog';
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BaseEditorComponent, EditorData } from '../base-editor/base-editor.component';
+import { MessageDialogComponent, MessageDialogData } from '../message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-base-table-view',
@@ -16,6 +18,8 @@ export class BaseTableViewComponent implements OnInit, OnChanges {
   @Input() rowEdit: EventEmitter<any>;
   @Input() rowDelete: EventEmitter<any>;
   @Input() create: EventEmitter<any>;
+  @Input() tableHeader: string;
+  @Input() editorTitle: string;
 
   displayedColumns: Array<string>;
 
@@ -33,18 +37,25 @@ export class BaseTableViewComponent implements OnInit, OnChanges {
   }
 
   onRowClick(row: any) {
-    console.log("onRowClick");
+    this.openEditor(row);
     this.rowClick?.emit(row);
   }
 
   onRowEdit($event: any, row: any) {
     console.log("onRowEdit");
     this.rowEdit?.emit(row);
-    $event.stopPropagation()
+    $event.stopPropagation();
+
+    this.openEditor(row);
   }
 
   onRowDelete($event: any, row: any) {
     console.log("onRowDelete");
+    let data = <MessageDialogData>{
+      message: 'Do you want to delete this record?',
+      showCancelButton: false
+    }
+    this.dialog.open(MessageDialogComponent, { data: data });
     this.rowDelete?.emit(row);
     $event.stopPropagation()
   }
@@ -52,6 +63,16 @@ export class BaseTableViewComponent implements OnInit, OnChanges {
   onCreate() {
     console.log("onCreate");
     this.create?.emit();
+  }
+
+  private openEditor(row: any) {
+    let data = <EditorData>{
+      dialogTitle: this.editorTitle,
+      columnDefinitions: this.columnDefinitions,
+      item: row,
+      saveEvent: null
+      };
+    let dialogRef = this.dialog.open(BaseEditorComponent, { data: data });
   }
 }
 

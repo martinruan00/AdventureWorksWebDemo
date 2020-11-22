@@ -10,10 +10,10 @@ namespace AdventureWorksWebDemo.Models.HumanResources
         [ColumnMetadata("Name")]
         public string Name { get; set; }
 
-        [ColumnMetadata("StartTime")]
+        [ColumnMetadata("Start time")]
         public TimeSpan StartTime { get; set; }
 
-        [ColumnMetadata("EndTime")]
+        [ColumnMetadata("End time")]
         public TimeSpan EndTime { get; set; }
     }
 }

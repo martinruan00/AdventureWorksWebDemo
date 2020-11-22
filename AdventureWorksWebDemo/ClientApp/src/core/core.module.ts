@@ -7,9 +7,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
+import { BaseEditorComponent } from './components/base-editor/base-editor.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 
 @NgModule({
-  declarations: [BaseTableViewComponent],
+  declarations: [BaseTableViewComponent, BaseEditorComponent, MessageDialogComponent],
   exports: [BaseTableViewComponent],
   imports: [
     CommonModule,
@@ -19,7 +24,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     MatGridListModule,
     MatButtonModule,
-    MatDialogModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class CoreModule { }
