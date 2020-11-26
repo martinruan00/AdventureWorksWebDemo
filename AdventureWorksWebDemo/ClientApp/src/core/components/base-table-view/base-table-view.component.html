@@ -1,10 +1,10 @@
-<div class="spinner-wrapper" [hidden]="!loading">
+<div class="spinner-wrapper" [hidden]="!isLoading">
   <mat-spinner class="table-view-spinner"></mat-spinner>
 </div>
 
-
-<div [hidden]="loading">
+<div class="table-view-container" [hidden]="isLoading">
   <h1>{{tableHeader}}</h1>
+
   <button mat-raised-button color="primary" (click)="onCreate">Create</button>
 
   <table mat-table [dataSource]="items" class="mat-elevation-z8">

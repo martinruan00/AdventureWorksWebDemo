@@ -56,7 +56,7 @@ namespace AdventureWorksWebDemo.Core
 
         public virtual async Task PutAsync(TModel contract)
         {
-            var dbSet = context.Set<TEntity>();
+            var dbSet = context.Set<TEntity>().ToArray();
             var toUpdate = dbSet.FirstOrDefault(e => GetEntityId(e) == GetModelId(contract));
             if (toUpdate != null)
             {

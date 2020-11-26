@@ -47,7 +47,7 @@ namespace AdventureWorksWebDemo.Controllers.HumanResources
                 await this.repository.PutAsync(department);
                 return Ok();
             }
-            catch
+            catch (Exception e)
             {
                 return BadRequest();
             }

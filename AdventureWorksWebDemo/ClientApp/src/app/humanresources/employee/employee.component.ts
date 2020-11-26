@@ -9,21 +9,10 @@ import { ColumnDefinition } from '../../../core/components/base-table-view/base-
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  loading: boolean;
-  employees: Employee[];
-  columnDefinitions: ColumnDefinition[];    
 
-  constructor(private service: EmployeeService) { }
+  constructor(public service: EmployeeService) { }
 
   ngOnInit(): void {
-    this.loading = true;
-
-    this.service.getColumnMetadata().subscribe(res => this.columnDefinitions = res);
-
-    this.service.get().subscribe(response => {
-      this.employees = response;
-      this.loading = false;
-    });
   }
 
 }

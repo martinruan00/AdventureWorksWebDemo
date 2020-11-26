@@ -1,6 +1,5 @@
-<app-base-table-view [items]="departments"
-                     [columnDefinitions]="columnDefinitions"
-                     [loading]="loading"
+<app-base-table-view [service]="service"
+                     [createItem]="createItem"
+                     [getId]="getId"
                      tableHeader="Departments"
-                     editorTitle="Department"
-                     ></app-base-table-view>
+                     editorTitle="Department"></app-base-table-view>

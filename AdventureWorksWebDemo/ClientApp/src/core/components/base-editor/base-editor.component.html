@@ -3,7 +3,7 @@
   <h1 mat-dialog-title>{{data.dialogTitle}}</h1>
   <div mat-dialog-content>
 
-    <div *ngFor="let c of columnDefinitions">
+    <div *ngFor="let c of data.columnDefinitions">
       <mat-form-field appearance="fill">
         <mat-label>{{c.header}}</mat-label>
         <input matInput [id]="c.key" type="text" [formControlName]="c.key">
@@ -13,7 +13,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button type="submit" mat-raised-button color="primary">Save</button>
+    <button type="submit" mat-raised-button color="primary" mat-dialog-close>Save</button>
     <button mat-raised-button mat-dialog-close>Cancel</button>
   </div>
 

@@ -9,22 +9,18 @@ import { ColumnDefinition } from '../../../core/components/base-table-view/base-
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
-  loading: boolean;
-  departments: Array<Department>;
-  columnDefinitions: ColumnDefinition[];
 
-  constructor(private service: DepartmentService) {
+  constructor(public service: DepartmentService) {
   }
 
   ngOnInit(): void {
-    this.loading = true;
-    this.service.getColumnMetadata().subscribe(res => {
-      this.columnDefinitions = res;
-    });
+  }
 
-    this.service.get().subscribe(response => {
-      this.departments = response;
-      this.loading = false;
-    });
+  createItem(): object {
+    return <Department>{};
+  }
+
+  getId(item: object): number {
+    return (<Department>item).departmentId;
   }
 }

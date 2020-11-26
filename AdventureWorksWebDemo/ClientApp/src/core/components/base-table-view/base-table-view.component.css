@@ -28,3 +28,7 @@ table {
   margin: auto;
   z-index: 100;
 }
+
+.table-view-container {
+    margin-left: 5px
+}

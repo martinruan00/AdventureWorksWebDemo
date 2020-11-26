@@ -9,23 +9,11 @@ import { ColumnDefinition } from '../../../core/components/base-table-view/base-
   styleUrls: ['./shift.component.css']
 })
 export class ShiftComponent implements OnInit {
-  loading: boolean;
-  displayedColumns: String[] = ['name', 'startTime', 'endTime'];
-  shifts: Shift[];
-  columnDefinitions: Array<ColumnDefinition>;
 
-  constructor(private service: ShiftService) {
+  constructor(public service: ShiftService) {
 
   }
 
   ngOnInit(): void {
-    this.loading = true;
-
-    this.service.getColumnMetadata().subscribe(res => this.columnDefinitions = res);
-
-    this.service.get().subscribe(response => {
-      this.shifts = response;
-      this.loading = false;
-    });
   }
 }

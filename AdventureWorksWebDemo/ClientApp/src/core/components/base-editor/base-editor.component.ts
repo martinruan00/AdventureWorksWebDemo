@@ -9,17 +9,11 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
   styleUrls: ['./base-editor.component.css']
 })
 export class BaseEditorComponent implements OnInit {
-  item: object
-  columnDefinitions: Array<ColumnDefinition>;
-  saveEvent: EventEmitter<any>;
   formGroup: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: EditorData, public dialogService: MatDialog, private formBuilder: FormBuilder) {
-    this.item = data.item;
-    this.columnDefinitions = data.columnDefinitions;
-
     let formGroupObj = {};
-    this.columnDefinitions.forEach(c => formGroupObj[c.key] = this.item[c.key]);
+    this.data.columnDefinitions.forEach(c => formGroupObj[c.key] = this.data.item[c.key]);
     this.formGroup = this.formBuilder.group(formGroupObj);
   }
 
@@ -28,14 +22,16 @@ export class BaseEditorComponent implements OnInit {
   }
 
   onSave() {
-    this.columnDefinitions.forEach(c => this.item[c.key] = this.formGroup[c.key]);
-    this.saveEvent?.emit(this.item);
+    this.data.columnDefinitions.forEach(c => {
+      this.data.item[c.key] = this.formGroup.value[c.key];
+    });
+    this.data.saveEvent(this.data.item);
   }
 }
 
 export interface EditorData {
   dialogTitle: string;
   item: object;
-  saveEvent: EventEmitter<any>;
+  saveEvent: (item: any) => { };
   columnDefinitions: Array<ColumnDefinition>;
 }
