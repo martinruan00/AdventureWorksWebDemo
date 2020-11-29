@@ -5,6 +5,7 @@ import { EmployeeComponent } from './humanresources/employee/employee.component'
 import { JobCandidateComponent } from './humanresources/job-candidate/job-candidate.component';
 import { DepartmentComponent } from './humanresources/department/department.component';
 import { ShiftComponent } from './humanresources/shift/shift.component';
+import { ProductComponent } from './production/product/product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'humanresources/job-candidate', component: JobCandidateComponent },
   { path: 'humanresources/shift', component: ShiftComponent },
   { path: 'humanresources/department', component: DepartmentComponent },
+  { path: 'production/products', component: ProductComponent },
+  
 ];
 
 @NgModule({

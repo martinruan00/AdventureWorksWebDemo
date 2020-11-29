@@ -26,6 +26,14 @@ namespace AdventureWorksWebDemo.Controllers
                         new MenuModel { Header = "Employees", Route = "humanresources/employee" },
                         new MenuModel { Header = "Shifts", Route = "humanresources/shift" }
                     }
+                },
+                new MenuModel
+                {
+                    Header = "Production",
+                    SubMenu = new List<MenuModel>
+                    {
+                        new MenuModel { Header = "Products", Route = "production/products" },
+                    }
                 }
             };
             return menu;

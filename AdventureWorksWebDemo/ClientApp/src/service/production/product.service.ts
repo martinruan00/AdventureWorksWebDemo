@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
+import { RestBaseService } from '../../core/rest-base.service';
+import { Product } from '../../model/production/product';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../core/config.service';
-import { RestBaseService } from '../../core/rest-base.service';
-import { Shift } from '../../model/humanresources/shift';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShiftService extends RestBaseService<Shift> {
-  
+export class ProductService extends RestBaseService<Product> {
 
   constructor(http: HttpClient, configService: ConfigService) {
     super(http, configService);
   }
 
   protected getApiPath(): string {
-    return "shifts";
+    return "product";
+  }
+  protected getId(model: Product): number {
+    return model.productId;
   }
 
-  protected getId(model: Shift): number {
-    return model.shiftId;
-  }
 }

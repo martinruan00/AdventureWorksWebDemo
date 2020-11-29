@@ -14,6 +14,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HumanresourcesModule } from './humanresources/humanresources.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigService } from '../core/config.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductionModule } from './production/production.module';
 
 export function initConfig(configService: ConfigService) {
   return () => configService.loadConfig();
@@ -33,9 +35,11 @@ export function initConfig(configService: ConfigService) {
     MatListModule,
     RouterModule,
     MatExpansionModule,
-    HumanresourcesModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgbModule,
+    HumanresourcesModule,
+    ProductionModule
   ],
   providers: [
     {

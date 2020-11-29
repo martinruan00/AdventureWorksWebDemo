@@ -38,6 +38,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\model\humanresources\employee.ts" />
     <None Remove="ClientApp\src\model\metadata\menu.ts" />
+    <None Remove="ClientApp\src\model\production\product.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,12 +48,14 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\service\humanresources\" />
     <Folder Include="ClientApp\src\service\metadata\" />
+    <Folder Include="ClientApp\src\service\production\" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\model\app-config.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\humanresources\employee.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\metadata\menu.ts" />
+    <TypeScriptCompile Include="ClientApp\src\model\production\product.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -16,4 +16,8 @@ export class DepartmentService extends RestBaseService<Department> {
   protected getApiPath(): string {
     return "departments";
   }
+
+  protected getId(model: Department): number {
+    return model.departmentId;
+  }
 }

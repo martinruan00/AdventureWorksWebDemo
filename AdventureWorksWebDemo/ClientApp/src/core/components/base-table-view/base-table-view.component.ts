@@ -27,12 +27,16 @@ export class BaseTableViewComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     forkJoin(this.service.get(), this.service.getColumnMetadata())
-      .subscribe(res => {
-        this.items = res[0];
-        this.columnDefinitions = res[1];
-        this.displayedColumns = this.columnDefinitions.map(c => c.key).concat(['edit', 'delete']);
-        this.isLoading = false;
-      });
+      .subscribe(
+        responses => {
+          this.items = responses[0];
+          this.columnDefinitions = responses[1];
+          this.displayedColumns = this.columnDefinitions.map(c => c.key).concat(['edit', 'delete']);
+        },
+        err => {
+
+        },
+        () => this.isLoading = false);
   }
 
   onRowClick(row: any) {
@@ -48,12 +52,23 @@ export class BaseTableViewComponent implements OnInit {
 
   onRowDelete($event: any, row: any) {
     console.log("onRowDelete");
-    let data = <MessageDialogData>{
+    $event.stopPropagation()
+
+    const data = <MessageDialogData>{
       message: 'Do you want to delete this record?',
       showCancelButton: false
     }
-    this.dialog.open(MessageDialogComponent, { data: data });
-    $event.stopPropagation()
+    const dialogRef = this.dialog.open(MessageDialogComponent, { data: data });
+    dialogRef.afterClosed()
+      .subscribe(_ => {
+        if (dialogRef.componentInstance.result) {
+          this.service.delete(row)
+            .subscribe(
+              res => { console.log('Deleted'); },
+              error => { console.log('Can not delete due to exception ' + error); });
+        }
+      });
+    
   }
 
   onCreate() {
@@ -67,7 +82,7 @@ export class BaseTableViewComponent implements OnInit {
       item: row,
       saveEvent: item => isNew
         ? this.service.post(item).subscribe(_ => this.reload())
-        : this.service.put(this.getId(item), item).subscribe(_ => this.reload())
+        : this.service.put(item).subscribe(_ => this.reload())
       };
     let dialogRef = this.dialog.open(BaseEditorComponent, { data: data });
   }

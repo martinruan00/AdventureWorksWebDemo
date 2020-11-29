@@ -1,0 +1,18 @@
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.product-list {
+    height: 100%;
+}
+
+.field-name {
+    font-weight: bold;
+}
+
+.product-images {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

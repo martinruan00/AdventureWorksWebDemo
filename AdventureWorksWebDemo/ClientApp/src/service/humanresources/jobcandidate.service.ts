@@ -8,6 +8,7 @@ import { ConfigService } from '../../core/config.service';
   providedIn: 'root'
 })
 export class JobcandidateService extends RestBaseService<JobCandidate> {
+  
 
   constructor(http: HttpClient, configService: ConfigService) {
     super(http, configService);
@@ -15,5 +16,9 @@ export class JobcandidateService extends RestBaseService<JobCandidate> {
 
   protected getApiPath(): string {
     return "jobcandidates";
+  }
+
+  protected getId(model: JobCandidate): number {
+    return model.businessEntityId;
   }
 }

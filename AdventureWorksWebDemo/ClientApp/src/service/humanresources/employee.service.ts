@@ -16,4 +16,8 @@ export class EmployeeService extends RestBaseService<Employee> {
   protected getApiPath(): string {
     return "employees";
   }
+
+  protected getId(model: Employee): number {
+    return model.employeeId;
+  }
 }

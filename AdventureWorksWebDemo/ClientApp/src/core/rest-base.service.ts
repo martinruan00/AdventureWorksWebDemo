@@ -26,12 +26,12 @@ export abstract class RestBaseService<TModel> {
     return this.http.post<TModel>(this.url, model);
   }
 
-  put(id: number, model: TModel): Observable<TModel> {
-    return this.http.put<TModel>(`${this.url}/${id}`, model);
+  put(model: TModel): Observable<TModel> {
+    return this.http.put<TModel>(`${this.url}/${this.getId(model)}`, model);
   }
 
-  delete(id: number, model: TModel): Observable<TModel> {
-    return this.http.delete<TModel>(`${this.url}/${id}`);
+  delete(model: TModel): Observable<TModel> {
+    return this.http.delete<TModel>(`${this.url}/${this.getId(model)}`);
   }
 
   getColumnMetadata(): Observable<Array<ColumnDefinition>> {
@@ -39,4 +39,5 @@ export abstract class RestBaseService<TModel> {
   }
 
   protected abstract getApiPath(): string;
+  protected abstract getId(model: TModel): number;
 }

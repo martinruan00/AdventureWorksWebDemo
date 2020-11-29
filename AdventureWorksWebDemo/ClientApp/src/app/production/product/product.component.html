@@ -1,0 +1,19 @@
+<div class="spinner-wrapper" [hidden]="!isLoading">
+  <mat-spinner class="table-view-spinner"></mat-spinner>
+</div>
+
+<div class="product-list" [hidden]="isLoading">
+  <mat-grid-list cols="2" rowHeight="30px">
+    <div *ngFor="let item of items">
+      <mat-grid-tile [rowspan]="columnMetadata.length" rowHeight="30px">
+        <mdb-carousel class="product-images">
+          <mdb-carousel-item *ngFor="let photo of item.safeResourcePhotos">
+            <img [src]="photo">
+          </mdb-carousel-item>
+        </mdb-carousel>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let col of columnMetadata"><span class="field-name">{{col.header}}</span>: {{item[col.key]}}</mat-grid-tile>
+      <mat-grid-tile colspan="2"><mat-divider style="width: 100%;"></mat-divider></mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div> 
