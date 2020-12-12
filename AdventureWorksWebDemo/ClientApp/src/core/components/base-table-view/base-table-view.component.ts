@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { BaseEditorComponent, EditorData } from '../base-editor/base-editor.component';
 import { MessageDialogComponent, MessageDialogData } from '../message-dialog/message-dialog.component';
 import { RestBaseService } from '../../rest-base.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-base-table-view',
@@ -19,8 +20,10 @@ export class BaseTableViewComponent implements OnInit {
 
   isLoading: boolean;
   items: Array<any>;
+  currentPageItems: Array<any>;
   displayedColumns: Array<string>;
   columnDefinitions: Array<ColumnDefinition>
+  pageSize: number = 10;
 
   constructor(private dialog: MatDialog) { }
 
@@ -30,6 +33,7 @@ export class BaseTableViewComponent implements OnInit {
       .subscribe(
         responses => {
           this.items = responses[0];
+          this.currentPageItems = this.items.slice(0, this.pageSize);
           this.columnDefinitions = responses[1];
           this.displayedColumns = this.columnDefinitions.map(c => c.key).concat(['edit', 'delete']);
         },
@@ -94,6 +98,10 @@ export class BaseTableViewComponent implements OnInit {
       this.items = res;
       this.isLoading = false;
     });
+  }
+
+  onPageChanged(env: PageEvent): void {
+    this.currentPageItems = this.items.slice(env.pageIndex * env.pageSize, env.pageIndex * env.pageSize + env.pageSize);
   }
 }
 

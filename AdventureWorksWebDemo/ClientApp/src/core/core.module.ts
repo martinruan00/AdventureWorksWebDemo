@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [BaseTableViewComponent, BaseEditorComponent, MessageDialogComponent],
@@ -27,7 +28,8 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ]
 })
 export class CoreModule { }

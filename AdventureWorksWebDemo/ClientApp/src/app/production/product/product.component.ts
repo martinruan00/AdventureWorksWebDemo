@@ -4,6 +4,7 @@ import { Product } from '../../../model/production/product';
 import { ColumnDefinition } from '../../../core/components/base-table-view/base-table-view.component';
 import { forkJoin } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product',
@@ -14,6 +15,8 @@ export class ProductComponent implements OnInit {
   isLoading: boolean;
   items: Product[];
   columnMetadata: ColumnDefinition[];
+  pageSize: number = 10;
+  currentPageItems: Product[];
 
   constructor(private service: ProductService, private sanitizer: DomSanitizer) { }
 
@@ -23,6 +26,7 @@ export class ProductComponent implements OnInit {
       .subscribe(
         responses => {
           this.items = responses[0];
+          this.currentPageItems = this.items.slice(0, this.pageSize);
           this.columnMetadata = responses[1];
 
           this.items.forEach(i => {
@@ -37,5 +41,9 @@ export class ProductComponent implements OnInit {
 
   transformUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${url}`);
+  }
+
+  onPageChanged(env: PageEvent): void {
+    this.currentPageItems = this.items.slice(env.pageIndex * env.pageSize, env.pageIndex * env.pageSize + env.pageSize);
   }
 }
