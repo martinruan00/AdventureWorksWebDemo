@@ -39,6 +39,8 @@
     <None Remove="ClientApp\src\model\humanresources\employee.ts" />
     <None Remove="ClientApp\src\model\metadata\menu.ts" />
     <None Remove="ClientApp\src\model\production\product.ts" />
+    <None Remove="ClientApp\src\model\sales\order-filter.ts" />
+    <None Remove="ClientApp\src\model\sales\order.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +50,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\service\humanresources\" />
     <Folder Include="ClientApp\src\service\metadata\" />
+    <Folder Include="ClientApp\src\service\sales\" />
     <Folder Include="ClientApp\src\service\production\" />
   </ItemGroup>
 
@@ -56,6 +59,8 @@
     <TypeScriptCompile Include="ClientApp\src\model\humanresources\employee.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\metadata\menu.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\production\product.ts" />
+    <TypeScriptCompile Include="ClientApp\src\model\sales\order-filter.ts" />
+    <TypeScriptCompile Include="ClientApp\src\model\sales\order.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

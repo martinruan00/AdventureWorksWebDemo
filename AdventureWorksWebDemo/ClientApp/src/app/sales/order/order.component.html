@@ -1,0 +1,48 @@
+<div class="spinner-wrapper" [hidden]="!isLoading">
+  <mat-spinner class="table-view-spinner"></mat-spinner>
+</div>
+
+<div class="order-filter" [hidden]="isLoading">
+  <p>order works!</p>
+  <p>From</p>
+  <input type="datetime-local" />
+  <p>To</p>
+  <input type="datetime-local" />
+  <p>Status</p>
+  <select>
+    <option>status 1</option>
+    <option>status 2</option>
+  </select>
+  <p>Order number</p>
+  <input type="text" />
+</div>
+
+<div class="product-list" [hidden]="isLoading">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let order of items"
+                         (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h4>{{order.revisionNumber}} - {{order.orderDate}}</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table mat-table [dataSource]="order.orderDetail" class="mat-elevation-z8">
+        <ng-container [matColumnDef]="colDef.key" *ngFor="let colDef of columnDefinitions">
+          <th class="table-cell" mat-header-cell *matHeaderCellDef> {{colDef.header}} </th>
+          <td class="table-cell" mat-cell *matCellDef="let item"> {{item[colDef.key]}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-paginator [length]="items.length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="onPageChanged($event)">
+  </mat-paginator>
+</div>
+

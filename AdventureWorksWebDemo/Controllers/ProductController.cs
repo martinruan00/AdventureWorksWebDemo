@@ -7,7 +7,7 @@ using AdventureWorksWebDemo.Generators;
 using AdventureWorksWebDemo.Models.Production;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AdventureWorksWebDemo.Controllers.HumanResources
+namespace AdventureWorksWebDemo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

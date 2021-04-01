@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfigService } from '../core/config.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductionModule } from './production/production.module';
+import { SalesModule } from './sales/sales.module';
+
 
 export function initConfig(configService: ConfigService) {
   return () => configService.loadConfig();
@@ -39,7 +41,8 @@ export function initConfig(configService: ConfigService) {
     MatProgressSpinnerModule,
     NgbModule,
     HumanresourcesModule,
-    ProductionModule
+    ProductionModule,
+    SalesModule
   ],
   providers: [
     {

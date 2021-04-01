@@ -6,6 +6,7 @@ import { JobCandidateComponent } from './humanresources/job-candidate/job-candid
 import { DepartmentComponent } from './humanresources/department/department.component';
 import { ShiftComponent } from './humanresources/shift/shift.component';
 import { ProductComponent } from './production/product/product.component';
+import { OrderComponent } from './sales/order/order.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'humanresources/shift', component: ShiftComponent },
   { path: 'humanresources/department', component: DepartmentComponent },
   { path: 'production/products', component: ProductComponent },
-  
+  { path: 'sales/orders', component: OrderComponent },
 ];
 
 @NgModule({

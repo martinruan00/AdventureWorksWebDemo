@@ -1,0 +1,16 @@
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.table-view-spinner {
+  margin: auto;
+  z-index: 100;
+}
+
+.order-filter {
+}
+
+.product-list {
+}

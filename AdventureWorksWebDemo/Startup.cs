@@ -17,6 +17,7 @@ using AdventureWorksWebDemo.Repositories;
 using AdventureWorksWebDemo.Models.HumanResources;
 using AdventureWorksWebDemo.Generators;
 using AdventureWorksWebDemo.Models.Production;
+using AdventureWorksWebDemo.Models.Sales;
 
 namespace AdventureWorksWebDemo
 {
@@ -126,6 +127,7 @@ namespace AdventureWorksWebDemo
             services.AddScoped(typeof(IRepository<JobCandidateModel>), typeof(JobCandidateRepository));
             services.AddScoped(typeof(IRepository<ShiftModel>), typeof(ShiftRepository));
             services.AddScoped(typeof(IRepository<ProductModel>), typeof(ProductRepository));
+            services.AddScoped(typeof(IRepository<OrderModel>), typeof(OrderRepository));
         }
     }
 }

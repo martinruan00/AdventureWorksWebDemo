@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseTableViewComponent } from './components/base-table-view/base-table-view.component';
+import { OrderComponent } from './order/order.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
-import { BaseEditorComponent } from './components/base-editor/base-editor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { BaseAdventureWorksComponent } from './components/base-adventure-works/base-adventure-works.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-  declarations: [BaseTableViewComponent, BaseEditorComponent, MessageDialogComponent, BaseAdventureWorksComponent],
-  exports: [BaseTableViewComponent, BaseAdventureWorksComponent],
+  declarations: [OrderComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -30,7 +28,9 @@ import { BaseAdventureWorksComponent } from './components/base-adventure-works/b
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatDividerModule,
+    MatPaginatorModule,
+    MatExpansionModule
   ]
 })
-export class CoreModule { }
+export class SalesModule { }
