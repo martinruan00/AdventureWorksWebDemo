@@ -12,6 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { StoreModule } from '@ngrx/store';
+import { productReducer } from './product/product.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './product/product.effects';
 
 @NgModule({
   declarations: [ProductComponent],
@@ -28,7 +32,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    StoreModule.forFeature('product', productReducer),
+    EffectsModule.forFeature([ProductEffects])
   ]
 })
 export class ProductionModule { }

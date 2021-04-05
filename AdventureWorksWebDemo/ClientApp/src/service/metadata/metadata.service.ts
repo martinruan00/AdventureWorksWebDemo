@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../core/config.service';
 import { Menu } from '../../model/metadata/menu';
 import { Observable } from 'rxjs';
+import { AppState } from '../../app/app.reducer';
+import { Store } from '@ngrx/store';
+import { getConfig } from '../../app/app.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +13,10 @@ import { Observable } from 'rxjs';
 export class MetadataService {
   url: string;
 
-  constructor(private httpClient: HttpClient, configService: ConfigService) {
-    this.url = `${configService.config?.apiEndpoint}/metadata`;
+  constructor(private httpClient: HttpClient, private store: Store<AppState>) {
+    this.store.select(getConfig).subscribe(cfg => {
+      this.url = `${cfg.apiEndpoint}/metadata`;
+    });
   }
 
   getMenu(): Observable<Array<Menu>> {

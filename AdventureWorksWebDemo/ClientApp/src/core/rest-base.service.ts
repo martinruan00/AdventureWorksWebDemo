@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ConfigService } from './config.service';
 import { ColumnDefinition } from './components/base-table-view/base-table-view.component';
+import { AppState } from '../app/app.reducer';
+import { Store } from '@ngrx/store';
+import { getConfig } from '../app/app.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +12,10 @@ import { ColumnDefinition } from './components/base-table-view/base-table-view.c
 export abstract class RestBaseService<TModel> {
   private url: string;
 
-  constructor(private http: HttpClient, private configService: ConfigService) {
-    if (configService.configObservable.getValue() != null) {
-      this.url = `${this.configService.config.apiEndpoint}/${this.getApiPath()}`;
-    }
-
-    configService.configObservable.subscribe(c => this.url = `${this.configService.config?.apiEndpoint}/${this.getApiPath()}`);
+  constructor(private http: HttpClient, private store: Store<AppState>) {
+    this.store.select(getConfig).subscribe(cfg => {
+      this.url = `${cfg.apiEndpoint}/${this.getApiPath()}`;
+    });
   }
 
   get(): Observable<Array<TModel>> {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Department } from '../../../model/humanresources/department';
 import { DepartmentService } from '../../../service/humanresources/department.service';
-import { ColumnDefinition } from '../../../core/components/base-table-view/base-table-view.component';
 
 @Component({
   selector: 'app-department',

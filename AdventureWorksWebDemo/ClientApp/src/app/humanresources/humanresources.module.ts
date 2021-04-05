@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressSpinnerModule,
     CommonModule,
     MatTableModule,
-    CoreModule
+    CoreModule,
   ]
 })
 export class HumanresourcesModule { }

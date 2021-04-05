@@ -36,6 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\production\product\product.actions.ts" />
+    <None Remove="ClientApp\src\app\production\product\product.effects.ts" />
     <None Remove="ClientApp\src\model\humanresources\employee.ts" />
     <None Remove="ClientApp\src\model\metadata\menu.ts" />
     <None Remove="ClientApp\src\model\production\product.ts" />
@@ -55,12 +57,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\production\product\product.actions.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\production\product\product.effects.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\model\app-config.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\humanresources\employee.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\metadata\menu.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\production\product.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\sales\order-filter.ts" />
     <TypeScriptCompile Include="ClientApp\src\model\sales\order.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\app\production\product\product.reducer.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="ClientApp\src\app\production\product\product.selectors.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

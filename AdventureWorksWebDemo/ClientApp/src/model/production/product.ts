@@ -1,6 +1,6 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
 
-export interface Product {
+export class Product {
     productId: number;
     name: string;
     productNumber: string;

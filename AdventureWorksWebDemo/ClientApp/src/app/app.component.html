@@ -1,4 +1,4 @@
-<mat-sidenav-container class="app-container">
+<mat-sidenav-container class="app-container" *ngIf="configLoaded">
   <mat-sidenav class="sidenav" mode="side" opened>
     <app-navigation></app-navigation>
   </mat-sidenav>

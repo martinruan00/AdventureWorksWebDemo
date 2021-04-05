@@ -17,7 +17,7 @@
     </div>
   </mat-grid-list>
 
-  <mat-paginator [length]="items.length"
+  <mat-paginator [length]="items?.length"
                  [pageSize]="pageSize"
                  [pageSizeOptions]="[5, 10, 25, 100]"
                  (page)="onPageChanged($event)">

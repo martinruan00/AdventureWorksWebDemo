@@ -13,15 +13,18 @@ export class ConfigService {
   constructor(private http: HttpClient) {
   }
 
-  loadConfig(): Promise<AppConfig> {
-    let getConfigPromise = this.http.get<AppConfig>('../assets/app-config.json').toPromise();
-    getConfigPromise
-      .then(c => {
-        this.config = c;
-        this.configObservable.next(this.config);
-        console.log('app config loaded');
+  //loadConfig(): Promise<AppConfig> {
+  //  let getConfigPromise = this.http.get<AppConfig>('../assets/app-config.json').toPromise();
+  //  getConfigPromise
+  //    .then(c => {
+  //      this.config = c;
+  //      this.configObservable.next(this.config);
+  //      console.log('app config loaded');
+  //    });
+  //  return getConfigPromise;
+  //}
 
-      });
-    return getConfigPromise;
+  loadAppConfig(): Observable<AppConfig> {
+    return this.http.get<AppConfig>('../assets/app-config.json');
   }
 }

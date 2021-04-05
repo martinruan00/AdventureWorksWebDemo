@@ -17,11 +17,10 @@ import { ConfigService } from '../core/config.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductionModule } from './production/production.module';
 import { SalesModule } from './sales/sales.module';
-
-
-export function initConfig(configService: ConfigService) {
-  return () => configService.loadConfig();
-}
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
 
 @NgModule({
   declarations: [
@@ -42,16 +41,13 @@ export function initConfig(configService: ConfigService) {
     NgbModule,
     HumanresourcesModule,
     ProductionModule,
-    SalesModule
+    SalesModule,
+    StoreModule.forRoot({ root: appReducer }),
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initConfig,
-      deps: [ConfigService],
-      multi: true
-    }
-],
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
